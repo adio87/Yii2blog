@@ -16,8 +16,8 @@ use Yii;
  * @property string $publish_status
  * @property string $publish_date
  *
- * @property TblUser $author
- * @property TblCategory $category
+ * @property TblUser[] $author
+ * @property TblCategory[] $category
  */
 class Post extends \yii\db\ActiveRecord
 {
@@ -65,7 +65,7 @@ class Post extends \yii\db\ActiveRecord
      */
     public function getAuthor()
     {
-        return $this->hasOne(TblUser::className(), ['id' => 'author_id']);
+        return $this->hasOne(User::className(), ['id' => 'author_id']);
     }
 
     /**
@@ -73,6 +73,6 @@ class Post extends \yii\db\ActiveRecord
      */
     public function getCategory()
     {
-        return $this->hasOne(TblCategory::className(), ['id' => 'category_id']);
+        return $this->hasOne(Category::className(), ['id' => 'category_id']);
     }
 }

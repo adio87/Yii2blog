@@ -15,7 +15,7 @@ use Yii;
  * @property string $about
  * @property string $image
  *
- * @property TblPost[] $tblPosts
+ * @property Post $tblPosts
  */
 class User extends \yii\db\ActiveRecord
 {
@@ -33,11 +33,12 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['login', 'password', 'email', 'nickname', 'image'], 'required'],
+            [['login', 'password', 'email', 'nickname'], 'required'],
             [['about'], 'string'],
             [['login'], 'string', 'max' => 40],
             [['password', 'email', 'image'], 'string', 'max' => 100],
-            [['nickname'], 'string', 'max' => 255]
+            [['nickname'], 'string', 'max' => 255],
+            ['email', 'email'],
         ];
     }
 
@@ -62,6 +63,6 @@ class User extends \yii\db\ActiveRecord
      */
     public function getTblPosts()
     {
-        return $this->hasMany(TblPost::className(), ['author_id' => 'id']);
+        return $this->hasMany(Post::className(), ['author_id' => 'id']);
     }
 }

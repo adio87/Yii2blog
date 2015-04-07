@@ -10,7 +10,7 @@ use Yii;
  * @property integer $id
  * @property string $title
  *
- * @property TblPost[] $tblPosts
+ * @property Post $tblPosts
  */
 class Category extends \yii\db\ActiveRecord
 {
@@ -49,6 +49,6 @@ class Category extends \yii\db\ActiveRecord
      */
     public function getTblPosts()
     {
-        return $this->hasMany(TblPost::className(), ['category_id' => 'id']);
+        return $this->hasMany(Post::className(), ['category_id' => 'id']);
     }
 }
